@@ -14,7 +14,7 @@ int main(int argc, char const *argv[])
 
     for (int i = cantidadHijos; i > 0; i--)
     {
-      printf("ciclo externo %d\n", i);
+      // printf("ciclo externo %d\n", i);
       printf("Proceso padre pid= %d\n", getpid());
       pid = fork();
       //pid = 0;
@@ -25,10 +25,10 @@ int main(int argc, char const *argv[])
       else if (pid == 0) // código del hijo
       {
         pid_t pidNieto;
+        printf("\tProceso hijo pid= %d ppid= %d\n", getpid(), getppid());
         for (int j = i; j > 0; j--)
         {
-          printf("\tciclo interno %d\n", j);
-          printf("\tProceso hijo pid= %d ppid= %d\n", getpid(), getppid());
+          // printf("\tciclo interno %d\n", j);
 
           pidNieto = fork();
 
@@ -39,6 +39,7 @@ int main(int argc, char const *argv[])
           else if (pidNieto == 0)
           {
             printf("\t\tProceso nieto pid=%d ppid=%d \n", getpid(), getppid());
+            return 0;
           }
           else
           {
@@ -46,6 +47,7 @@ int main(int argc, char const *argv[])
             // printf("\tTerminó nieto pid= %d\n", pidNieto);
           }
         }
+        return 0;
       }
       else // código del padre
       {
