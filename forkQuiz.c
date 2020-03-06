@@ -39,6 +39,7 @@ int main(int argc, char const *argv[])
           else if (pidNieto == 0)
           {
             printf("\t\tProceso nieto pid=%d ppid=%d \n", getpid(), getppid());
+            //sleep(6);
             return 0;
           }
           else
